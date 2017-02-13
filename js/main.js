@@ -1,4 +1,4 @@
-
+ 
 
 // GCD (greatest common divisor of (a,b) )
 
@@ -27,7 +27,7 @@ function pr(n){
 
 		return false
 
-	} else for(var j = 3; j < (n)^(.5); j=j+2) {
+	} else for(var j = 3; j < Math.pow(n,0.5); j=j+2) {
         if(n % j === 0) {
             return false
         }
@@ -241,7 +241,7 @@ function factorize(n){
 // computes n factorial recursively
 
 
-function pi(n){
+function factorial(n){
 
 	if(n==0){
 
@@ -249,7 +249,7 @@ function pi(n){
 
 	} else {
 
-		return n*pi(n-1)
+		return n*factorial(n-1)
 
 	}
 
@@ -268,13 +268,19 @@ function prob(){
 
 		} else {
 
-			return n*pi(n-1)
+			return n*factorial(n-1)
 
 		}
 
 	},
 
 	this.choose=function(n,k){
+
+		if(n<k){
+
+			return null
+
+		}
 
 		return this.factorial(n)/(this.factorial(k)*this.factorial(n-k))
 
@@ -446,18 +452,219 @@ function pigLatin(word){
 
 	var pig = word1+letter1+"ay"
 
+	return pig
+
 }
 
+// blue square fadein
 
 $(document).ready(function() {
 	setTimeout(function() {
-		$(".blueSquare").addClass("fadeInDown")
+		$(".blueSquare").addClass("fadeIn")
 		$(".blueSquare").css("display", "block")
 	}, 2000)
 })
 
 
+// max of an array without using .max
 
 
 
+function arrayMax(arr){
 
+	var max=arr[0]
+
+	for(var i=1; i<arr.length; i++){
+
+		if(arr[i]>max){
+
+			max=arr[i]
+
+		} 
+
+	}
+
+	return max
+}
+
+//
+
+function limit(){
+
+	var n = Infinity
+
+	var t= Infinity/n
+
+	// var f = Math.pow(1+(1/n),n)
+
+	var f=Math.pow(1,n)
+
+	return t
+
+}
+
+
+// Euler-Mascheroni constant
+
+function gamma(n){
+
+	var sum=0
+
+	for(var i=1; i<=n; i++){
+
+		sum = sum + (1/i)
+
+	}
+
+	return sum-Math.log(n)
+
+
+	// return gamma(n-1)+(1/n)+Math.log(1-(1/n))
+
+}
+
+
+// The following is a list of functions that leads up to powerReal, 
+// which computes a positive value raised to any real-valued exponent.
+
+function powerNat(b,e){
+
+	if(e==0){
+
+		if(b==0){
+
+			return "undefined"
+
+		} else{
+
+			return 1
+
+		}
+
+	} else {
+
+		var product=1
+
+		for(var i=0; i<e; i++){
+
+			product = product*b
+
+		}
+
+		return product
+
+	}
+
+}
+
+
+function powerInt(b,e){
+
+	if(e>=0){
+
+		return powerNat(b,e)
+
+	} else {
+
+		return 1/powerNat(b,-e)
+
+	}
+
+}
+
+function isInteger(n) {
+
+        return n % 1 === 0;
+
+}
+
+
+function powerReal(b,e){
+
+	if(isInteger(e)==true){
+
+		return powerInt(b,e)
+
+	} else {
+
+		var n=1000
+
+		sum=0
+
+		for(var i=0; i<=n; i++){
+
+			sum = sum + powerNat(Math.log(b)*e,i)/factorial(i) 
+
+		}
+
+		return sum
+
+	}
+
+
+}
+
+
+//logs the elements of an array whose indices are odd
+
+function oddly(array){
+
+	for(var i=1; i<array.length; i=i+2){
+
+		console.log(array[i])
+	}
+
+}
+
+	
+
+// logs the digits of an integer
+
+function logInt(integer){
+
+	length=Math.floor(Math.log10(integer))+1
+
+	var n = integer
+
+	for(var i=0; i<length; i++){
+
+		m = n/(Math.pow(10,length-i-1))
+
+		m = Math.floor(m)
+
+		m = m%10
+
+		console.log(m)
+
+	}
+
+}
+
+// check1 and check2 check if an element is in an array
+
+
+function check1(element, array){
+
+		return array.includes(element)
+	
+}
+
+
+function check2(value, array){
+
+
+	for(var i=0; i<array.length; i++){
+
+		if(value==array[i]){
+
+			return true
+
+		}
+
+
+	}
+
+	return false
+
+
+}
